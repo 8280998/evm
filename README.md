@@ -1,13 +1,20 @@
 # evmEVM通用交互程序
 说明：适用于大部分EVM网络批量刷tx。可以自行在cnofig.json添加不同链的rpc和链id。
 
-比如，在monad上开发一个faucet合约，然后通过程序批量领取。或者任意其他合约的交互，需要取得合约的地址和data。
-
-测试领取空投币：
-
-交互地址：0xfcBA9b0ABc504bCBb89F0771833c57F17FDbdd42
+## 已在以下网络部署的交互合约
+### 1 monad测试网
+空投领取测试币，交互合约地址：0xfcBA9b0ABc504bCBb89F0771833c57F17FDbdd42
 
 data：0x4e71d92d
+
+测试币应用游戏web：https://monad-bet-game.vercel.app/
+
+### 2 giwa测试网
+空投领取测试币，交互合约地址：0xf931b1dAFdebC98b5cBdF5EC5fE043e81CDf8559
+
+data：0x4e71d92d
+
+测试币应用游戏web：https://giwagame.vercel.app/
 
 <img width="1188" height="642" alt="image" src="https://github.com/user-attachments/assets/9ee82e27-121c-42da-b6ec-c9be9259f4c7" />
 
