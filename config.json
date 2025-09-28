@@ -19,6 +19,10 @@
         "rpc": "https://arb1.arbitrum.io/rpc",
         "chain_id": 42161
     },
+    "giwatestnet": {
+        "rpc": "https://sepolia-rpc.giwa.io",
+        "chain_id": 91342
+    },
     "monadtest": {
         "rpc": "https://testnet-rpc.monad.xyz",
         "chain_id": 10143
