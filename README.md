@@ -2,14 +2,14 @@
 说明：适用于大部分EVM网络批量刷tx。可以自行在cnofig.json添加不同链的rpc和链id。
 
 ## 已在以下网络部署的交互合约
-### 1 monad测试网
+### 1 monad测试网 链选择:monadtestnet
 空投领取测试币，交互合约地址：0xfcBA9b0ABc504bCBb89F0771833c57F17FDbdd42
 
 data：0x4e71d92d
 
 测试币应用游戏web：https://monad-bet-game.vercel.app/
 
-### 2 giwa测试网
+### 2 giwa测试网 链选择：giwatestnet
 空投领取测试币，交互合约地址：0xf931b1dAFdebC98b5cBdF5EC5fE043e81CDf8559
 
 data：0x4e71d92d
