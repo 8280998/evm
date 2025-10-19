@@ -1,6 +1,8 @@
 # evmEVM通用交互程序
 说明：适用于大部分EVM网络批量刷tx。可以自行在cnofig.json添加不同链的rpc和链id。
 
+2025-10-25 更新：在gui界面增加了发送eth的参数，默认为0.因为有些mint nft需要发送少量eth到交互合约才能mint成功。
+
 ## 已在以下网络部署的交互合约
 ### 1 monad测试网 链选择:monadtestnet
 空投领取测试币，交互合约地址：0xfcBA9b0ABc504bCBb89F0771833c57F17FDbdd42
@@ -46,3 +48,5 @@ config.json如果不包括需要的网络，请自行在config.json中添加所�
 <img width="1200" height="1056" alt="image" src="https://github.com/user-attachments/assets/b3c14b95-52c1-47e0-ad84-ee0bc1b78ad6" />
 
 
+增加发送eth参数后，运行。下图是在giwa测试网 mint一个nft。每个nft需要支付0.001eth
+<img width="1400" height="1056" alt="QQ_1760836454145" src="https://github.com/user-attachments/assets/f62362cf-d1bf-41c2-af6a-f073d2ff5ae1" />
