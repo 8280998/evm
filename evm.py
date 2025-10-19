@@ -11,7 +11,7 @@ class EVMInteractor:
     def __init__(self, root):
         self.root = root
         self.root.title("EVM 通用交互程序")
-        self.root.geometry("600x500")
+        self.root.geometry("700x500")
         
         # 参数输入框架
         input_frame = tk.Frame(root)
@@ -53,7 +53,7 @@ class EVMInteractor:
         self.data_entry = tk.Text(input_frame, height=4, width=65)
         self.data_entry.grid(row=2, column=1, pady=2, padx=(0,5), sticky=tk.W)  # 左边距0，更贴近标签
         
-        # 交互次数、Gas、延迟 并列同一行 - 使用子Frame以pack布局实现紧凑
+        # 交互次数、Gas、延迟、发送eth 并列同一行 - 使用子Frame以pack布局实现紧凑
         params_subframe = tk.Frame(input_frame)
         params_subframe.grid(row=3, column=0, columnspan=2, sticky=tk.W, pady=2)
         
@@ -68,9 +68,17 @@ class EVMInteractor:
         # Gas组
         gas_frame = tk.Frame(params_subframe)
         gas_frame.pack(side=tk.LEFT, padx=(10,5))
-        tk.Label(gas_frame, text="Gas (可留空默认动态):").pack(side=tk.LEFT)
+        tk.Label(gas_frame, text="Gas (可留空):").pack(side=tk.LEFT)
         self.gas_entry = tk.Entry(gas_frame, width=8)
         self.gas_entry.pack(side=tk.LEFT, padx=(2,0))
+        
+        # 发送Value组
+        value_frame = tk.Frame(params_subframe)
+        value_frame.pack(side=tk.LEFT, padx=(10,5))
+        tk.Label(value_frame, text="发送eth").pack(side=tk.LEFT)
+        self.value_entry = tk.Entry(value_frame, width=8)
+        self.value_entry.pack(side=tk.LEFT, padx=(2,0))
+        self.value_entry.insert(0, "0")
         
         # 延迟组
         delay_frame = tk.Frame(params_subframe)
@@ -111,7 +119,7 @@ class EVMInteractor:
         config_file = "config.json"
         default_config = {
             "eth": {
-                "rpc": "https://mainnet.infura.io",
+                "rpc": "https://mainnet.infura.io/v3/YOUR_PROJECT_ID",
                 "chain_id": 1
             },
             "base": {
@@ -213,6 +221,15 @@ class EVMInteractor:
             gas_str = self.gas_entry.get().strip()
             gas = int(gas_str) if gas_str else None
             
+            # 解析 Value (ETH)
+            value_str = self.value_entry.get().strip() or "0"
+            try:
+                value_eth = float(value_str)
+                if value_eth < 0:
+                    raise ValueError("Value 不能为负数")
+            except ValueError:
+                raise ValueError("无效的 Value 格式，应为数字如 0.001")
+            
             # 解析延迟范围
             delay_str = self.delay_entry.get().strip() or "1-5"
             if '-' not in delay_str:
@@ -227,7 +244,7 @@ class EVMInteractor:
                 raise ValueError("无法连接到 RPC")
             
             total_interactions = len(self.private_keys) * times
-            self.log(f"开始执行，总交互次数: {total_interactions} (每个私钥 {times} 次, 延迟 {min_delay}-{max_delay}秒)")
+            self.log(f"开始执行，总交互次数: {total_interactions} (每个私钥 {times} 次, Value: {value_eth} ETH, 延迟 {min_delay}-{max_delay}秒)")
             
             for pk_idx, private_key in enumerate(self.private_keys):
                 if self.stop_flag:
@@ -255,7 +272,7 @@ class EVMInteractor:
                         
                         tx = {
                             'to': contract_addr,
-                            'value': 0,
+                            'value': w3.to_wei(value_eth, 'ether'),  # 设置发送的 ETH 值
                             'gas': 0,  # 稍后估算
                             'gasPrice': w3.eth.gas_price,
                             'nonce': current_nonce,  # 使用最新 nonce
