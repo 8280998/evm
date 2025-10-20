@@ -1,5 +1,6 @@
 # evmEVM通用交互程序
-说明：适用于大部分EVM网络批量刷tx。可以自行在cnofig.json添加不同链的rpc和链id。
+## 免责声明：本程序为明文代码，运行前请先审核代码安全性。确定使用后，运行时产生任何损失均与本代码无关
+脚本说明：适用于大部分EVM网络批量刷tx。可以自行在cnofig.json添加不同链的rpc和链id。
 
 2025-10-25 更新：在gui界面增加了发送eth的参数，默认为0.因为有些mint nft需要发送少量eth到交互合约才能mint成功。
 
@@ -19,10 +20,6 @@ data：0x4e71d92d
 测试币应用游戏web：https://giwagame.vercel.app/
 
 <img width="1188" height="642" alt="image" src="https://github.com/user-attachments/assets/9ee82e27-121c-42da-b6ec-c9be9259f4c7" />
-
-
-
-## 免责声明：本程序为明文代码，运行前请先审核代码安全性。确定使用后，运行时产生任何损失均与本代码无关
 
 ## 1 安装支持环境
 安装 Python，tkinter（GUI 库）， web3（区块链交互库）
